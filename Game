@@ -1,0 +1,15 @@
+public abstract class Personagem {
+
+    public static void main(String[] args) {
+                
+    }
+    public class arqueiro{
+        
+    }
+    public class cavaleiro{
+        
+    }
+  public class mago{
+
+}
+}
