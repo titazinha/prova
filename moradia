@@ -1,16 +1,29 @@
 package com.mycompany.Provinha;
 import java.util.ArrayList;
-
+import Java.util.list;
+import java.util.Scanner;
 
 public abstract class Moradia {
-
+protected String Rua;
+protected int numero;
+ public moradia( String Rua, int numero){
+this.Rua = Rua;
+this.numero = numero;
+}
     public static void main(String[] args) {
-                
+      Scanner sc = new Scanner(System.in);
+     System.out.println(" Digite 1 para casa, Digite 2 para apartamento")
+    Sc Scanner = Scanner.nextint();
+    Scanner.nextline();
+System.out.println("Rua");
+string Rua = Scanner.nextline();
+System.out.println("numero");
+int numero = Scanner.nextint();
     }
     public class casa{
-        
+        bairro
     }
     public class apartamento{
-        
+        bloco
     }
 }
