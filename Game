@@ -1,15 +1,111 @@
-public abstract class Personagem {
+package pooprova;
 
-    public static void main(String[] args) {
-                
-    }
-    public class arqueiro{
-        
-    }
-    public class cavaleiro{
-        
-    }
-  public class mago{
+import java.util.Random;
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
+/** 
+* Classe abstrata Personagem serve como um modelo para outras 
+* classes que estendem dela, classes filhas (Arqueiro, Cavaleiro e Mago)
+*/	
+
+ public abstract class Personagem {
+    
+    protected String nome;
+    protected int nivel;
+    protected final int vida = 3; //Valor Constante para vida
+    
+    // Construtor da classe Personagem
+    public Personagem(String nome, int nivel) {
+        this.nome = nome;
+        this.nivel = nivel;
+    }
+    
+//Método - jogar o dado de vida
+    public int JogarDadoVida(){
+        Random random = new Random();
+        int valor = random.nextInt(6) + 1;
+        return valor;    
+    }
 }
+//Classe Mago herda os atributos e métodos da classe Personagem
+class Mago extends Personagem {
+	
+	
+	public Mago(String nome, int nivel) {
+		
+		super(nome, nivel);
+	}
 }
+
+//Classe Cavaleiro herda os atributos e métodos da classe Personagem
+class Cavaleiro extends Personagem {
+	
+	
+	public Cavaleiro(String nome, int nivel) {
+		
+		super(nome, nivel);
+	}
+}
+ 
+// Classe Arqueiro herda os atributos e métodos da classe Personagem
+class Arqueiro extends Personagem {
+    
+    // Construtor da classe Arqueiro
+    public Arqueiro(String nome, int nivel) {
+        // Chamada ao construtor da classe pai (Personagem)
+        super(nome, nivel);
+    }  
+
+public String toString() {
+    
+    return "Hello World";
+    
+
+
+	}
+}
+
+package pooprova;
+
+import java.util.Scanner;
+
+//Classe Teste
+	public class TestaPersonagem {
+	    public static void main(String[] args) {  
+	        Scanner sc = new Scanner(System.in);
+	        
+	        //Dados do Personagem
+	        System.out.println("------Escolha de Classe-----");
+	        System.out.println("Pressione 1 para Arqueiro, 2"
+	        		+ " para Mago e 3 para Cavaleiro.");
+	        int classe = sc.nextInt();
+	        
+	        System.out.println("Digite o nome do seu Personagem: ");
+	        String nomePersonagem = sc.nextLine();
+	        
+
+	        System.out.println("Digite o nivel do seu Personagem: ");
+	        int nivelPersonagem = sc.nextInt();
+	        
+	        //Visualizar status do Personagem ou ir para os métodos
+	        
+	        System.out.println("Aperte 1 para visualizar o seu Status, "
+	        		+ "2 para jogar o dado e tentar ganhar uma vida ou "
+	        		+ "3 para farmar xp e aumentar o seu nivel");
+	        int respostaPersonagem = sc.nextInt();	
+	       
+	        if (respostaPersonagem == 1) {
+	        	System.out.println("Classe: " + classe);
+	        	System.out.println("Nome: " + nomePersonagem);
+	        	System.out.println("Nivel: " + nivelPersonagem);
+	        	System.out.println("Vidas" + 3);
+	        	
+	        }
+	    }
+	}
+
+
+
+
