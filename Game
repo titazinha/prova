@@ -14,58 +14,76 @@ import java.util.ArrayList;
     
     protected String nome;
     protected int nivel;
-    protected final int vida = 3; //Valor Constante para vida
+    protected String classe;
     
-    // Construtor da classe Personagem
-    public Personagem(String nome, int nivel) {
-        this.nome = nome;
-        this.nivel = nivel;
+    
+ public Personagem(String nome, int nivel, String classe) {
+    this.nome = nome;
+    this.nivel = nivel;
+    this.classe = classe;
     }
     
-//Método - jogar o dado de vida
-    public int JogarDadoVida(){
-        Random random = new Random();
-        int valor = random.nextInt(6) + 1;
-        return valor;    
+public Object[] ToString() {
+	Scanner sc = new Scanner(System.in);
+		
+	//Dados do Personagem
+    System.out.println("------Escolha de Classe-----");
+    System.out.println("Pressione A para Arqueiro, M para Mago e C para Cavaleiro.");
+    String escolhaClasse = sc.nextLine();
+    //Preenchendo com o nome completo da classe
+    String classeEscolhida = "";
+    switch (escolhaClasse) {
+        case "A":
+            classeEscolhida = "Arqueiro";
+            break;
+        case "M":
+            classeEscolhida = "Mago";
+            break;
+        case "C":
+            classeEscolhida = "Cavaleiro";
+            break;
+        default:
+            classeEscolhida = "Escolha inválida.";
+            break;
     }
-}
-//Classe Mago herda os atributos e métodos da classe Personagem
+    
+    System.out.println("Digite o nome do seu Personagem: ");
+    String nomePersonagem = sc.nextLine();
+    
+    System.out.println("Digite o nivel do seu Personagem: ");
+    int nivelPersonagem = sc.nextInt();
+    
+    //Guardando os objetos em uma array
+	Object[] resultado = {classeEscolhida, nomePersonagem, nivelPersonagem};	
+	return resultado;
+		} 
+}	
+
 class Mago extends Personagem {
 	
-	
-	public Mago(String nome, int nivel) {
+	public Mago(String nome, int nivel, String classe) {
 		
-		super(nome, nivel);
+		super(nome, nivel, classe);
 	}
 }
 
-//Classe Cavaleiro herda os atributos e métodos da classe Personagem
 class Cavaleiro extends Personagem {
 	
-	
-	public Cavaleiro(String nome, int nivel) {
+	public Cavaleiro(String nome, int nivel, String classe) {
 		
-		super(nome, nivel);
+		super(nome, nivel, classe);
 	}
 }
- 
-// Classe Arqueiro herda os atributos e métodos da classe Personagem
+
+
 class Arqueiro extends Personagem {
-    
-    // Construtor da classe Arqueiro
-    public Arqueiro(String nome, int nivel) {
-        // Chamada ao construtor da classe pai (Personagem)
-        super(nome, nivel);
-    }  
-
-public String toString() {
-    
-    return "Hello World";
-    
-
-
-	}
+	
+	public Arqueiro(String nome, int nivel, String classe) {   
+     
+		super(nome, nivel, classe);
+     } 
 }
+
 
 package pooprova;
 
@@ -74,38 +92,32 @@ import java.util.Scanner;
 //Classe Teste
 	public class TestaPersonagem {
 	    public static void main(String[] args) {  
-	        Scanner sc = new Scanner(System.in);
 	        
-	        //Dados do Personagem
-	        System.out.println("------Escolha de Classe-----");
-	        System.out.println("Pressione 1 para Arqueiro, 2"
-	        		+ " para Mago e 3 para Cavaleiro.");
-	        int classe = sc.nextInt();
+	    	
+	    	Personagem personagem = new Arqueiro("", 0, ""); 
+	        Object[] valores = personagem.ToString();
 	        
-	        System.out.println("Digite o nome do seu Personagem: ");
-	        String nomePersonagem = sc.nextLine();
+	        String classe = (String) valores[0];
+	        String nome = (String) valores[1];
+	        int nivel = (int) valores[2]; 
+	        
+	        
+	        
+	        
 	        
 
-	        System.out.println("Digite o nivel do seu Personagem: ");
-	        int nivelPersonagem = sc.nextInt();
 	        
-	        //Visualizar status do Personagem ou ir para os métodos
 	        
-	        System.out.println("Aperte 1 para visualizar o seu Status, "
-	        		+ "2 para jogar o dado e tentar ganhar uma vida ou "
-	        		+ "3 para farmar xp e aumentar o seu nivel");
-	        int respostaPersonagem = sc.nextInt();	
-	       
-	        if (respostaPersonagem == 1) {
-	        	System.out.println("Classe: " + classe);
-	        	System.out.println("Nome: " + nomePersonagem);
-	        	System.out.println("Nivel: " + nivelPersonagem);
-	        	System.out.println("Vidas" + 3);
 	        	
-	        }
+	        
 	    }
 	}
 
+////Visualizar status do Personagem ou ir para os métodos
+    
+    //System.out.println("Aperte 1 para visualizar o Status do seu"
+    	//	+ " Personagem");
+   // int respostaPersonagem = sc.nextInt();
 
 
 
