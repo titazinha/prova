@@ -1,6 +1,5 @@
 package pooprova;
 
-import java.util.Random;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -16,18 +15,16 @@ import java.util.ArrayList;
     protected int nivel;
     protected String classe;
     
-    
  public Personagem(String nome, int nivel, String classe) {
     this.nome = nome;
     this.nivel = nivel;
-    this.classe = classe;
-    }
+    this.classe = classe;   
+ }
     
-public Object[] ToString() {
-	Scanner sc = new Scanner(System.in);
+public void ToString(Scanner sc) {
 		
 	//Dados do Personagem
-    System.out.println("------Escolha de Classe-----");
+    System.out.println("-----------------Escolha de Classe------------------------------");
     System.out.println("Pressione A para Arqueiro, M para Mago e C para Cavaleiro.");
     String escolhaClasse = sc.nextLine();
     //Preenchendo com o nome completo da classe
@@ -46,18 +43,25 @@ public Object[] ToString() {
             classeEscolhida = "Escolha inválida.";
             break;
     }
-    
+   
     System.out.println("Digite o nome do seu Personagem: ");
     String nomePersonagem = sc.nextLine();
     
     System.out.println("Digite o nivel do seu Personagem: ");
     int nivelPersonagem = sc.nextInt();
     
-    //Guardando os objetos em uma array
-	Object[] resultado = {classeEscolhida, nomePersonagem, nivelPersonagem};	
-	return resultado;
+    this.nome = nomePersonagem;
+    this.nivel = nivelPersonagem;
+    this.classe = classeEscolhida;
+   
 		} 
-}	
+	
+@Override
+public String toString() {
+    return "Nome: " + nome + ", Nível: " + nivel + ", Classe: " + classe;
+}
+ 
+ }	
 
 class Mago extends Personagem {
 	
@@ -84,40 +88,43 @@ class Arqueiro extends Personagem {
      } 
 }
 
-
 package pooprova;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 //Classe Teste
 	public class TestaPersonagem {
 	    public static void main(String[] args) {  
-	        
+	    	Scanner sc = new Scanner(System.in);
+	        List<Personagem> personagens = new ArrayList<>(); // Lista para armazenar os personagens
 	    	
-	    	Personagem personagem = new Arqueiro("", 0, ""); 
-	        Object[] valores = personagem.ToString();
-	        
-	        String classe = (String) valores[0];
-	        String nome = (String) valores[1];
-	        int nivel = (int) valores[2]; 
-	        
-	        
-	        
-	        
-	        
+	        boolean criarNovoPersonagem = true;
+	        while (criarNovoPersonagem) {
+	            Personagem personagem = new Arqueiro("", 0, ""); // Crie um personagem padrão
+	            personagem.ToString(sc); // Modifique o personagem usando o método ToString
+	            personagens.add(personagem); // Adicione o personagem à lista
+	            
+	        System.out.println("Aperte (1) Finalizar e visualizar o Status do atual Personagem\n"
+	                    + "Aperte (2) Criar um novo personagem");
 
-	        
-	        
-	        	
-	        
-	    }
-	}
+	            int opcao = sc.nextInt();
+	            if (opcao == 1) {
+	                criarNovoPersonagem = false; // Finalizar a criação de personagens
+	            }
+	            sc.nextLine(); // Limpar o buffer do scanner
+	        }
+	        // Exibir os personagens armazenados na lista
+	        System.out.println("Lista de personagens:");
+	        for (Personagem p : personagens) {
+	            System.out.println(p);
+	        }	        
+	    	}
+}
+	
 
-////Visualizar status do Personagem ou ir para os métodos
-    
-    //System.out.println("Aperte 1 para visualizar o Status do seu"
-    	//	+ " Personagem");
-   // int respostaPersonagem = sc.nextInt();
+
 
 
 
