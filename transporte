@@ -1,0 +1,104 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+// Veiculo.java
+abstract class Veiculo {
+    protected String modelo;
+    protected int ano;
+
+    public Veiculo(String modelo, int ano) {
+        this.modelo = modelo;
+        this.ano = ano;
+    }
+
+    public abstract String toString();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Veiculo> veiculos = new ArrayList<>();
+
+        while (true) {
+            System.out.println("Digite 1 para cadastrar um carro, 2 para cadastrar uma bicicleta, 3 para cadastrar um avião ou 0 para sair:");
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer
+
+            if (opcao == 0) {
+                break;
+            }
+
+            System.out.println("Digite o modelo:");
+            String modelo = scanner.nextLine();
+            System.out.println("Digite o ano:");
+            int ano = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer
+
+            if (opcao == 1) {
+                System.out.println("Digite a potência:");
+                int potencia = scanner.nextInt();
+                scanner.nextLine(); // Limpar o buffer
+                veiculos.add(new Carro(modelo, ano, potencia));
+            } else if (opcao == 2) {
+                System.out.println("Digite o tipo de bicicleta:");
+                String tipo = scanner.nextLine();
+                veiculos.add(new Bicicleta(modelo, ano, tipo));
+            } else if (opcao == 3) {
+                System.out.println("Digite a envergadura:");
+                double envergadura = scanner.nextDouble();
+                veiculos.add(new Aviao(modelo, ano, envergadura));
+            }
+        }
+
+        System.out.println("\nVeículos cadastrados:");
+        for (Veiculo veiculo : veiculos) {
+            System.out.println(veiculo);
+        }
+
+        scanner.close();
+    }
+}
+
+// Carro.java
+class Carro extends Veiculo {
+    private int potencia;
+
+    public Carro(String modelo, int ano, int potencia) {
+        super(modelo, ano);
+        this.potencia = potencia;
+    }
+
+    @Override
+    public String toString() {
+        return "Carro: Modelo - " + modelo + ", Ano - " + ano + ", Potência - " + potencia + "cv";
+    }
+}
+
+// Bicicleta.java
+class Bicicleta extends Veiculo {
+    private String tipo;
+
+    public Bicicleta(String modelo, int ano, String tipo) {
+        super(modelo, ano);
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Bicicleta: Modelo - " + modelo + ", Ano - " + ano + ", Tipo - " + tipo;
+    }
+}
+
+// Aviao.java
+class Aviao extends Veiculo {
+    private double envergadura;
+
+    public Aviao(String modelo, int ano, double envergadura) {
+        super(modelo, ano);
+        this.envergadura = envergadura;
+    }
+
+    @Override
+    public String toString() {
+        return "Avião: Modelo - " + modelo + ", Ano - " + ano + ", Envergadura - " + envergadura + " metros";
+    }
+}
