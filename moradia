@@ -26,9 +26,50 @@ int numero = Scanner.nextint();
     public class casa extends moradia{
         Private boolean possuibairro;
 public casa(String Rua, int numero, boolean possuibairro) 
+ super(rua, numero);
+        this.possuibairro = possuibairro;
 }
     }
-    public class apartamento{
-        bloco
+    public class apartamento extends moradia{
+       private int andar;
+public Apartamento(String rua, int numero, int andar) {
+        super(rua, numero);
+        this.andar = andar;
     }
+ @Override
+    public String toString() {
+        return super.toString() + ", Andar: " + andar;
+    }
+public class ClassePrincipalMoradia {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Moradia> moradias = new ArrayList<>();
+
+        // Cadastrando moradias
+        System.out.println("Digite 1 para casa, 2 para apartamento:");
+        int tipo = scanner.nextInt();
+        scanner.nextLine(); // Consumir nova linha
+
+        System.out.println("rua:");
+        String rua = scanner.nextLine();
+
+        System.out.println("Numero:");
+        int numero = scanner.nextInt();
+
+        if (tipo == 1) {
+            System.out.println("Possui garagem? (true/false)");
+            boolean possuiGaragem = scanner.nextBoolean();
+            moradias.add(new Casa(rua, numero, possuiGaragem));
+        } else if (tipo == 2) {
+            System.out.println("Andar:");
+            int andar = scanner.nextInt();
+            moradias.add(new Apartamento(rua, numero, andar));
+        }
+
+        // Imprimindo moradias cadastradas
+        for (Moradia m : moradias) {
+            System.out.println(m);
+        }
+
+        scanner.close();
 }
