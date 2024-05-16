@@ -1,0 +1,129 @@
+package pooprova;
+
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+/** 
+* Classe abstrata Personagem serve como um modelo para outras 
+* classes que estendem dela, classes filhas (Arqueiro, Cavaleiro e Mago)
+*/	
+
+ public abstract class Namorados {
+    
+    protected String nome;
+    protected int anos;
+    protected String presentes;
+    
+ public Personagem(String nome, int anos, String presentes) {
+    this.nome = nome;
+    this.anos = anos;
+    this.presentes = presentes;   
+ }
+    
+public void ToString(Scanner sc) {
+		
+	//Dados do Personagem
+    System.out.println("-----------------Escolha de Classe------------------------------");
+    System.out.println("Pressione p para presentes, n para nome A para anos.");
+    String escolhaClasse = sc.nextLine();
+  
+    String classeEscolhida = "";
+    switch (escolhaClasse) {
+        case "A":
+            classeEscolhida = "anos";
+            break;
+        case "n":
+            classeEscolhida = "nome";
+            break;
+        case "p":
+            classeEscolhida = "presentes";
+            break;
+        default:
+            classeEscolhida = "Escolha inválida.";
+            break;
+    }
+   
+    System.out.println("Digite o nome do seu namorado: ");
+    String nomePersonagem = sc.nextLine();
+    
+    System.out.println("Digite o ano do seu namoro: ");
+    int nivelPersonagem = sc.nextInt();
+    
+    this.nome = nome;
+    this.anos = anos;
+    this.presentes = presentes;
+   
+		} 
+	
+@Override
+public String toString() {
+    return "Nome: " + nome + ", anos: " + anos + ", presentes: " + presentes;
+}
+ 
+ }	
+
+class  extends Personagem {
+	
+	public Mago(String nome, int nivel, String classe) {
+		
+		super(nome, nivel, classe);
+	}
+}
+
+class Cavaleiro extends Personagem {
+	
+	public (String nome, int nivel, String classe) {
+		
+		super(nome, nivel, classe);
+	}
+}
+
+
+class Arqueiro extends Personagem {
+	
+	public Arqueiro(String nome, int nivel, String classe) {   
+     
+		super(nome, nivel, classe);
+     } 
+}
+
+package pooprova;
+
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+//Classe Teste
+	public class TestaPersonagem {
+	    public static void main(String[] args) {  
+	    	Scanner sc = new Scanner(System.in);
+	        List<Personagem> personagens = new ArrayList<>(); // Lista para armazenar os personagens
+	    	
+	        boolean criarNovoPersonagem = true;
+	        while (criarNovoPersonagem) {
+	            Personagem personagem = new Arqueiro("", 0, ""); // Crie um personagem padrão
+	            personagem.ToString(sc); // Modifique o personagem usando o método ToString
+	            personagens.add(personagem); // Adicione o personagem à lista
+	            
+	        System.out.println("Aperte (1) Finalizar e visualizar o Status do atual Personagem\n"
+	                    + "Aperte (2) Criar um novo personagem");
+
+	            int opcao = sc.nextInt();
+	            if (opcao == 1) {
+	                criarNovoPersonagem = false; // Finalizar a criação de personagens
+	            }
+	            sc.nextLine(); // Limpar o buffer do scanner
+	        }
+	        // Exibir os personagens armazenados na lista
+	        System.out.println("Lista de personagens:");
+	        for (Personagem p : personagens) {
+	            System.out.println(p);
+	        }	        
+	    	}
+}
+	
+
+
+
+
